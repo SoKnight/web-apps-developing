@@ -1,0 +1,31 @@
+<div th:fragment="content" class="products-list">
+    <div class="product-card" th:each="product : ${products}">
+        <div class="title-box">
+            <h1 class="title" th:text="${product.name}">i9-12900K-1</h1>
+            <p><b>Процессор:</b> <span th:text="${product.processor}">Intel Core i9-12900K</span></p>
+            <p><b>Защита:</b> <span th:text="${product.protection}">Anti-DDoS Standard</span></p>
+        </div>
+        <div class="main-content">
+            <div class="item">
+                <h2>vCore</h2>
+                <p th:text="${product.vcore}">1 (5.2GHz)*</p>
+            </div>
+            <div class="item">
+                <h2>ОЗУ</h2>
+                <p th:text="${product.ram}">4 GB DDR4</p>
+            </div>
+            <div class="item">
+                <h2>Накопитель</h2>
+                <p th:text="${product.storage}">1 x 100 GB NVMe</p>
+            </div>
+            <div class="item">
+                <h2>Канал</h2>
+                <p th:text="${product.network}">100 Mbps</p>
+            </div>
+        </div>
+        <div class="price-box">
+            <h2><span th:text="${product.price}">100</span> ₽ / мес</h2>
+            <button>Заказать</button>
+        </div>
+    </div>
+</div>

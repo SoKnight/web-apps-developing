@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle ?: 'EasyHost'}">EasyHost</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div th:class="brand">
+            <img th:class="logo" th:src="@{/icons/logo.svg}" alt="logo">
+            <h1>EasyHost</h1>
+        </div>
+        <div th:class="badges">
+            <p th:class="badge">Выделенные серверы</p>
+            <p th:class="badge">VDS / VPS</p>
+            <p th:class="badge">Веб-хостинг</p>
+        </div>
+    </header>
+    <nav>
+        <a th:href="@{/news}" th:classappend="${page == 'news'} ? 'active' : ''">Новости</a>
+        <a th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? 'active' : ''">Каталог услуг</a>
+        <a th:href="@{/about-us}" th:classappend="${page == 'about-us'} ? 'active' : ''">О нас</a>
+    </nav>
+    <main>
+        <div th:class="page-content">
+            <div th:replace="~{${content}}"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 EasyHost - Все права защищены.</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.idea/
+.gradle/
+build/
+*.iml
+*.jar
+
+# avoid gradle wrapper jar ignore
+!gradle/wrapper/*.jar
