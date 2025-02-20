@@ -1,4 +1,4 @@
-<div th:fragment="content" class="center-content">
-    <h2>Ошибка!</h2>
-    <p>Запрашиваемая страница не найдена 😕</p>
+<div th:fragment="content" class="center-content error-page">
+    <h2 th:text="${error.title}"></h2>
+    <p th:text="${error.message}"></p>
 </div>

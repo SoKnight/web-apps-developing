@@ -1,5 +1,5 @@
-<div th:fragment="content" class="products-list">
-    <div class="product-card" th:each="product : ${products}">
+<div th:fragment="content" class="product-order-page">
+    <div class="product-card">
         <div class="title-box">
             <h1 class="title" th:text="${product.name}">i9-12900K-1</h1>
             <p><b>Процессор:</b> <span th:text="${product.processor}">Intel Core i9-12900K</span></p>
@@ -25,7 +25,26 @@
         </div>
         <div class="price-box">
             <h2><span th:text="${product.price}">100</span> ₽ / мес</h2>
-            <a th:href="@{/order(id=${product.id})}" class="button">Заказать</a>
         </div>
     </div>
+
+    <form th:action="@{/order}" method="post">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+
+        <label for="service">Выберите услугу:</label>
+        <select id="service" name="service" required>
+            <option value="vds">VDS-хостинг</option>
+            <option value="ds">Dedicated Server (DS)</option>
+            <option value="web-hosting">Web-хостинг</option>
+        </select>
+
+        <label for="comments">Комментарии:</label>
+        <textarea id="comments" name="comments" placeholder="Ваши пожелания (необязательно)"></textarea>
+
+        <input type="submit" value="Оформить заказ">
+    </form>
 </div>

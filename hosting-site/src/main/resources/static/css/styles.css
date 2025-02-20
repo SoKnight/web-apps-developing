@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
+.button,
 button {
     border-radius: 12px;
     background: #4caf50;
@@ -22,12 +23,15 @@ button {
     padding: 12px 24px;
     cursor: pointer;
     transition: color, background-color, opacity 0.25s ease;
+    text-decoration: none;
 }
 
+.button:hover,
 button:hover {
     background-color: #449947;
 }
 
+.button:active,
 button:active {
     opacity: 0.75;
 }
@@ -235,7 +239,6 @@ div.news-card .news-content {
     display: flex;
     flex-direction: row;
     text-align: center;
-    height: 100%;
 }
 
 .product-card .price-box button {
@@ -266,6 +269,15 @@ div.payment-methods {
 
 div.payment-methods img {
     height: 24px;
+}
+
+.product-order-page .price-box {
+    justify-content: space-around;
+}
+
+.error-page {
+    margin-top: 24px;
+    gap: 18px;
 }
 
 footer {

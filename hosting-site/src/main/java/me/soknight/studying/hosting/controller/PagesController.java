@@ -1,6 +1,7 @@
 package me.soknight.studying.hosting.controller;
 
 import lombok.AllArgsConstructor;
+import me.soknight.studying.hosting.model.ErrorModel;
 import me.soknight.studying.hosting.model.Product;
 import me.soknight.studying.hosting.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,10 @@ public final class PagesController {
             case "news" -> injectFragment(model, page, null);
             case "catalog" -> injectFragment(model, page, "EasyHost - Каталог услуг");
             case "about-us" -> injectFragment(model, page, "EasyHost - О нас");
-            default -> injectFragment(model, "error", "EasyHost - Ошибка");
+            default -> {
+                injectFragment(model, "error", "EasyHost - Ошибка");
+                ErrorModel.ERROR_NOT_FOUND.injectInto(model);
+            }
         }
 
         if ("catalog".equals(page))
