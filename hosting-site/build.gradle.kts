@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.springframework.spring.boot.starter.data.jpa)
     implementation(libs.springframework.spring.boot.starter.security)
     implementation(libs.springframework.spring.boot.starter.thymeleaf)
+    implementation(libs.springframework.spring.boot.starter.validation)
     implementation(libs.springframework.spring.boot.starter.web)
 
     implementation(libs.thymeleaf.extras.springsecurity6)

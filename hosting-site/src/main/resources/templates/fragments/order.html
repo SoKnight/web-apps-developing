@@ -1,50 +1,88 @@
 <div th:fragment="content" class="product-order-page">
-    <div class="product-card">
-        <div class="title-box">
-            <h1 class="title" th:text="${product.name}">i9-12900K-1</h1>
-            <p><b>Процессор:</b> <span th:text="${product.processor}">Intel Core i9-12900K</span></p>
-            <p><b>Защита:</b> <span th:text="${product.protection}">Anti-DDoS Standard</span></p>
-        </div>
-        <div class="main-content">
-            <div class="item">
-                <h2>vCore</h2>
-                <p th:text="${product.vcore}">1 (5.2GHz)*</p>
-            </div>
-            <div class="item">
-                <h2>ОЗУ</h2>
-                <p th:text="${product.ram}">4 GB DDR4</p>
-            </div>
-            <div class="item">
-                <h2>Накопитель</h2>
-                <p th:text="${product.storage}">1 x 100 GB NVMe</p>
-            </div>
-            <div class="item">
-                <h2>Канал</h2>
-                <p th:text="${product.network}">100 Mbps</p>
-            </div>
-        </div>
-        <div class="price-box">
-            <h2><span th:text="${product.price}">100</span> ₽ / мес</h2>
-        </div>
-    </div>
-
     <form th:action="@{/order}" method="post">
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+        <div class="personal-info-block">
+            <div class="form-field">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Как к Вам обращаться?" minlength="2" maxlength="64" required>
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+            <div class="form-field">
+                <label for="email">Ваша почта</label>
+                <input type="email" id="email" name="email" placeholder="Введите адрес эл. почты" minlength="5" maxlength="64" required>
+            </div>
 
-        <label for="service">Выберите услугу:</label>
-        <select id="service" name="service" required>
-            <option value="vds">VDS-хостинг</option>
-            <option value="ds">Dedicated Server (DS)</option>
-            <option value="web-hosting">Web-хостинг</option>
-        </select>
+            <div class="form-field">
+                <label for="phone_number">Номер телефона</label>
+                <input type="tel" id="phone_number" name="phoneNumber" placeholder="Введите номер телефона" minlength="11" maxlength="11" required>
+            </div>
 
-        <label for="comments">Комментарии:</label>
-        <textarea id="comments" name="comments" placeholder="Ваши пожелания (необязательно)"></textarea>
+            <div class="form-field">
+                <label for="country">Страна проживания</label>
+                <select id="country" name="country" required>
+                    <option value="russia">Россия</option>
+                </select>
+            </div>
 
-        <input type="submit" value="Оформить заказ">
+            <div class="form-field">
+                <label for="post_index">Почтовый индекс</label>
+                <input type="number" id="post_index" name="postIndex" placeholder="Введите почтовый индекс" minlength="6" maxlength="6" required>
+            </div>
+
+            <div class="form-field">
+                <label for="city">Город</label>
+                <input type="text" id="city" name="city" placeholder="Введите название города" minlength="2" maxlength="32" required>
+            </div>
+
+            <div class="form-field">
+                <label for="city_address">Улица, дом</label>
+                <input type="text" id="city_address" name="cityAddress" placeholder="Введите название улицы и номер дома" minlength="4" maxlength="64" required>
+            </div>
+        </div>
+
+        <div class="side-block">
+            <div class="presubmit-block">
+                <div class="form-field">
+                    <label for="product">Выберите тариф</label>
+                    <select id="product" name="id" required th:field="${product.id}">
+                        <option th:each="p : ${products}" th:value="${p.id}" th:text="${p.name}"></option>
+                    </select>
+                </div>
+
+                <div class="quantity-block">
+                    <div class="form-field">
+                        <h3>Количество</h3>
+                        <div class="quantity-counter">
+                            <button type="button" class="decrease" onclick="decreaseQuantity()">-</button>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" readonly required>
+                            <button type="button" class="increase" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <h3>Стоимость</h3>
+                        <p><span id="base_price" th:text="${product.price}"></span> ₽ / мес</p>
+                    </div>
+                    <div class="form-field">
+                        <h3>Итого</h3>
+                        <p><span id="order_sum" th:text="${product.price}"></span> ₽ / мес</p>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="comment">Комментарий к заказу</label>
+                    <textarea id="comment" name="comment" placeholder="Можете написать пожелания к заказу здесь" maxlength="320"></textarea>
+                </div>
+            </div>
+
+            <div class="submit-block">
+                <div class="form-field">
+                    <label for="is_adult">
+                        <input type="checkbox" id="is_adult" name="is_adult" required>
+                        Мне уже исполнилось 18 лет
+                    </label>
+                </div>
+
+                <input type="submit" class="button" value="Оформить заказ">
+            </div>
+        </div>
     </form>
 </div>

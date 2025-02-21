@@ -9,32 +9,32 @@ import lombok.NoArgsConstructor;
 @Entity @Table(name = "products")
 public final class Product {
 
-    @Id @Column(name = "id")
+    @Id @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "processor")
+    @Column(name = "processor", nullable = false)
     private String processor;
 
-    @Column(name = "protection")
+    @Column(name = "protection", nullable = false)
     private String protection;
 
-    @Column(name = "vcore")
+    @Column(name = "vcore", nullable = false)
     private String vcore;
 
-    @Column(name = "ram")
+    @Column(name = "ram", nullable = false)
     private String ram;
 
-    @Column(name = "storage")
+    @Column(name = "storage", nullable = false)
     private String storage;
 
-    @Column(name = "network")
+    @Column(name = "network", nullable = false)
     private String network;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
 
     @Override
