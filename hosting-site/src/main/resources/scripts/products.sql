@@ -1,4 +1,5 @@
-TRUNCATE TABLE products;
+TRUNCATE TABLE products CASCADE;
+ALTER SEQUENCE products_id_seq RESTART WITH 1;
 
 INSERT INTO products (name, processor, protection, vcore, ram, storage, network, price) VALUES
     ('Hi-CPU Nebula', 'Ryzen 9 7950X',  'Anti-DDoS Standard', '1 (5.7GHz)', '2 GB DDR5', '1 x 45 GB NVMe', '1 Gbps', '500'),

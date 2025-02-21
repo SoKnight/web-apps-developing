@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${pageTitle ?: 'EasyHost'}">EasyHost</title>
+    <title th:text="${pageTitle ?: 'EasyHost - Админ'}">EasyHost - Админ</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -14,16 +14,13 @@
             <h1>EasyHost</h1>
         </div>
         <div class="badges">
-            <p class="badge">Выделенные серверы</p>
-            <p class="badge">VDS / VPS</p>
-            <p class="badge">Веб-хостинг</p>
+            <p class="badge">Панель администрирования</p>
         </div>
     </header>
     <nav>
-        <a th:href="@{/news}" th:classappend="${page == 'news'} ? 'active' : ''">Новости</a>
-        <a th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? 'active' : ''">Каталог услуг</a>
-        <a th:href="@{/about-us}" th:classappend="${page == 'about-us'} ? 'active' : ''">О нас</a>
-        <a th:href="@{/admin}" class="login-item">Вход</a>
+        <a th:href="@{/admin/products}" th:classappend="${page == 'products'} ? 'active' : ''">Доступные услуги</a>
+        <a th:href="@{/admin/orders}" th:classappend="${page == 'orders'} ? 'active' : ''">Список заказов</a>
+        <a th:href="@{/logout}" class="login-item">Выход</a>
     </nav>
     <main>
         <div class="page-content">

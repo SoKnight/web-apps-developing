@@ -1,0 +1,52 @@
+<div th:fragment="content" class="crud-form">
+    <h1 th:text="${formTitle}"></h1>
+
+    <form action="" method="post">
+        <div class="form-block">
+            <div class="form-field">
+                <label for="name">Название</label>
+                <input type="text" id="name" name="name" placeholder="Введите название услуги" th:value="${product.name}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="processor">Процессор</label>
+                <input type="text" id="processor" name="processor" placeholder="Введите информацию о процессоре" th:value="${product.processor}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="protection">Защита</label>
+                <input type="text" id="protection" name="protection" placeholder="Введите информацию о защите" th:value="${product.protection}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="vcore">vCore</label>
+                <input type="text" id="vcore" name="vcore" placeholder="Введите информацию о виртуальных ядрах" th:value="${product.vcore}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="ram">ОЗУ</label>
+                <input type="text" id="ram" name="ram" placeholder="Введите информацию об оперативной памяти" th:value="${product.ram}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="storage">Накопитель</label>
+                <input type="text" id="storage" name="storage" placeholder="Введите информацию о накопителе" th:value="${product.storage}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="network">Канал</label>
+                <input type="text" id="network" name="network" placeholder="Введите информацию о ширине канала" th:value="${product.network}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="price">Стоимость</label>
+                <input type="number" id="price" name="price" placeholder="Введите стоимость услуги" th:value="${product.price} > 0 ? ${product.price} : ''" required>
+            </div>
+        </div>
+
+        <div class="actions-box">
+            <a class="button" th:href="@{/admin/products}">Отмена</a>
+            <input type="submit" class="button" th:value="${formButton}">
+        </div>
+    </form>
+</div>

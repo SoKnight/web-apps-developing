@@ -1,0 +1,22 @@
+<div th:fragment="content" class="crud-panel">
+    <a th:href="@{/admin/products/create}" class="button">Добавить новую услугу</a>
+
+    <div class="products-grid">
+        <div class="product-card" th:each="product : ${products}">
+            <h2 class="title" th:text="${product.name}"></h2>
+            <div class="main-content">
+                <p><b>Процессор:</b> <span th:text="${product.processor}"></span></p>
+                <p><b>Защита:</b> <span th:text="${product.protection}"></span></p>
+                <p><b>vCore:</b> <span th:text="${product.vcore}"></span></p>
+                <p><b>ОЗУ:</b> <span th:text="${product.ram}"></span></p>
+                <p><b>Накопитель:</b> <span th:text="${product.storage}"></span></p>
+                <p><b>Канал:</b> <span th:text="${product.network}"></span></p>
+                <p><b>Стоимость:</b> <span th:text="${product.price}"></span> ₽ / мес</p>
+            </div>
+            <div class="actions-box">
+                <a th:href="@{'/admin/products/' + ${product.id} + '/edit'}" class="button">Редактировать</a>
+                <a th:href="@{'/admin/products/' + ${product.id} + '/delete'}" onclick="return confirm('Вы действительно хотите удалить эту услугу?')" class="button dangerous">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>

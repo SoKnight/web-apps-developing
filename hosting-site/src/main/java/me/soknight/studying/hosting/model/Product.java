@@ -3,6 +3,10 @@ package me.soknight.studying.hosting.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -36,6 +40,44 @@ public final class Product {
 
     @Column(name = "price", nullable = false)
     private int price;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Order> orders;
+
+    public Product(ProductDto dto) {
+        this(
+                dto.name(), dto.processor(), dto.protection(),
+                dto.vcore(), dto.ram(), dto.storage(), dto.network(),
+                dto.price()
+        );
+    }
+
+    public Product(
+            String name, String processor, String protection,
+            String vcore, String ram, String storage, String network,
+            int price
+    ) {
+        this.name = name;
+        this.processor = processor;
+        this.protection = protection;
+        this.vcore = vcore;
+        this.ram = ram;
+        this.storage = storage;
+        this.network = network;
+        this.price = price;
+    }
+
+    public void update(ProductDto dto) {
+        this.name = dto.name();
+        this.processor = dto.processor();
+        this.protection = dto.protection();
+        this.vcore = dto.vcore();
+        this.ram = dto.ram();
+        this.storage = dto.storage();
+        this.network = dto.network();
+        this.price = dto.price();
+    }
 
     @Override
     public String toString() {

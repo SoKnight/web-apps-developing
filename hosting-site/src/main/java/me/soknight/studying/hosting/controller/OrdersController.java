@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import static me.soknight.studying.hosting.util.FragmentInjector.injectErrorFragment;
+import static me.soknight.studying.hosting.util.FragmentInjector.injectFragment;
+
 @Controller
 @AllArgsConstructor
 public final class OrdersController {
-
-    private static final ErrorModel ERROR_PRODUCT_NOT_FOUND = new ErrorModel(
-            "Ошибка!",
-            "Указанный продукт не найден \uD83D\uDE15"
-    );
 
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
@@ -38,18 +36,11 @@ public final class OrdersController {
 
         productRepository.findById(id).ifPresentOrElse(
                 product -> {
-                    model.addAttribute("content", "fragments/order");
-                    model.addAttribute("page", "order");
-                    model.addAttribute("pageTitle", "EasyHost - Оформление заказа");
                     model.addAttribute("product", product);
                     model.addAttribute("products", productRepository.findAll());
+                    injectFragment(model, "order", "EasyHost - Оформление заказа");
                 },
-                () -> {
-                    model.addAttribute("content", "fragments/error");
-                    model.addAttribute("page", "error");
-                    model.addAttribute("pageTitle", "EasyHost - Ошибка");
-                    ERROR_PRODUCT_NOT_FOUND.injectInto(model);
-                }
+                () -> injectErrorFragment(model, ErrorModel.ERROR_PRODUCT_NOT_FOUND)
         );
 
         return "page";
@@ -62,18 +53,11 @@ public final class OrdersController {
                     Order order = new Order(dto, product);
                     orderRepository.save(order);
 
-                    model.addAttribute("content", "fragments/order_complete");
-                    model.addAttribute("page", "order_complete");
-                    model.addAttribute("pageTitle", "EasyHost - Заказ оформлен");
                     model.addAttribute("order", order);
                     model.addAttribute("product", product);
+                    injectFragment(model, "order_complete", "EasyHost - Заказ оформлен");
                 },
-                () -> {
-                    model.addAttribute("content", "fragments/error");
-                    model.addAttribute("page", "error");
-                    model.addAttribute("pageTitle", "EasyHost - Ошибка");
-                    ERROR_PRODUCT_NOT_FOUND.injectInto(model);
-                }
+                () -> injectErrorFragment(model, ErrorModel.ERROR_PRODUCT_NOT_FOUND)
         );
 
         return "page";

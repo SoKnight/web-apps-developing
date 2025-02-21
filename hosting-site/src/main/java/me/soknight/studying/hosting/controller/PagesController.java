@@ -1,15 +1,16 @@
 package me.soknight.studying.hosting.controller;
 
 import lombok.AllArgsConstructor;
-import me.soknight.studying.hosting.model.ErrorModel;
 import me.soknight.studying.hosting.model.Product;
 import me.soknight.studying.hosting.repository.ProductRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+
+import static me.soknight.studying.hosting.util.FragmentInjector.injectFragment;
 
 @Controller
 @AllArgsConstructor
@@ -18,38 +19,29 @@ public final class PagesController {
     private final ProductRepository productRepository;
 
     @GetMapping("/")
-    public String renderIndexPage(Model model) {
+    public String redirectToNews(Model model) {
         injectFragment(model, "news", null);
         return "page";
     }
 
-    @GetMapping("/{page}")
-    public String renderPage(@PathVariable String page, Model model) {
-        switch (page) {
-            case "news" -> injectFragment(model, page, null);
-            case "catalog" -> injectFragment(model, page, "EasyHost - Каталог услуг");
-            case "about-us" -> injectFragment(model, page, "EasyHost - О нас");
-            default -> {
-                injectFragment(model, "error", "EasyHost - Ошибка");
-                ErrorModel.ERROR_NOT_FOUND.injectInto(model);
-            }
-        }
-
-        if ("catalog".equals(page))
-            supplyCatalogItems(model);
-
+    @GetMapping("/news")
+    public String renderNewsPage(Model model) {
+        injectFragment(model, "news", null);
         return "page";
     }
 
-    private void supplyCatalogItems(Model model) {
-        List<Product> products = productRepository.findAll();
+    @GetMapping("/catalog")
+    public String renderCatalogPage(Model model) {
+        List<Product> products = productRepository.findAll(Sort.by(Sort.Order.asc("id")));
         model.addAttribute("products", products);
+        injectFragment(model, "catalog", "EasyHost - Каталог услуг");
+        return "page";
     }
 
-    private void injectFragment(Model model, String page, String pageTitle) {
-        model.addAttribute("content", "fragments/%s".formatted(page));
-        model.addAttribute("page", page);
-        model.addAttribute("pageTitle", pageTitle);
+    @GetMapping("/about-us")
+    public String renderAboutUsPage(Model model) {
+        injectFragment(model, "about-us", "EasyHost - О нас");
+        return "page";
     }
 
 }

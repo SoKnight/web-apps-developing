@@ -1,0 +1,33 @@
+<div th:fragment="content" class="crud-panel">
+    <div class="orders-grid">
+        <div class="order-card" th:each="order : ${orders}">
+            <div class="title-box">
+                <h2 class="title" th:text="${order.product.name} + ' x ' + ${order.quantity}"></h2>
+                <p><b>Итоговая стоимость:</b> <span th:text="${order.product.price} * ${order.quantity}"></span> ₽ / мес</p>
+                <p><b>Создан:</b> <span th:text="${order.getCreationDateTime()}"></span></p>
+            </div>
+            <div class="main-content">
+                <p><b>Имя:</b> <span th:text="${order.name}"></span></p>
+                <p><b>Почта:</b> <span th:text="${order.email}"></span></p>
+                <p><b>Телефон:</b> <span th:text="${order.phoneNumber}"></span></p>
+                <p><b>Страна:</b> <span th:text="${order.country}"></span></p>
+                <p><b>Индекс:</b> <span th:text="${order.postIndex}"></span></p>
+                <p><b>Город:</b> <span th:text="${order.city}"></span></p>
+                <p><b>Адрес:</b> <span th:text="${order.cityAddress}"></span></p>
+                <p>
+                    <b>Комментарий:</b>
+                    <span class="tooltip-control" th:if="${order.hasComment()}">
+                        показать
+                        <span class="tooltip" th:text="${order.comment}"></span>
+                    </span>
+                    <span th:if="${!order.hasComment()}">
+                        отсутствует
+                    </span>
+                </p>
+            </div>
+            <div class="actions-box">
+                <a th:href="@{'/admin/orders/' + ${order.id} + '/delete'}" onclick="return confirm('Вы действительно хотите удалить этот заказ?')" class="button dangerous">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>

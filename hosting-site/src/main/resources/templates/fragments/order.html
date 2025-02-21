@@ -1,6 +1,6 @@
 <div th:fragment="content" class="product-order-page">
     <form th:action="@{/order}" method="post">
-        <div class="personal-info-block">
+        <div class="form-block personal-info-block">
             <div class="form-field">
                 <label for="name">Ваше имя</label>
                 <input type="text" id="name" name="name" placeholder="Как к Вам обращаться?" minlength="2" maxlength="64" required>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="side-block">
-            <div class="presubmit-block">
+            <div class="form-block presubmit-block">
                 <div class="form-field">
                     <label for="product">Выберите тариф</label>
                     <select id="product" name="id" required th:field="${product.id}">
