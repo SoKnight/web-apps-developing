@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Перевод между системами счисления</h2>
+    <main>
+        <section class="input-panel">
+            <input type="text" id="src-number" placeholder="Исходное число" required readonly>
+            <div id="buttons-grid" class="buttons-grid"></div>
+        </section>
+
+        <section class="output-panel">
+            <div class="expanded">
+                <div class="base-trace">
+                    <select class="base-selector" id="from-base" required></select>
+                    <p> ➜ </p>
+                    <select class="base-selector" id="to-base" required></select>
+                </div>
+
+                <input type="text" id="result" placeholder="Результат" required readonly>
+            </div>
+
+            <div class="actions-box">
+                <button id="convert-button" class="primary" onclick="performConvertation()">Перевести</button>
+                <button onclick="clearForm()">Сбросить</button>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/main.js"></script>
+</body>
+</html>
