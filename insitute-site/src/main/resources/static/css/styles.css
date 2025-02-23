@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'PermianSansTypeface';
+    src: url('/fonts/permian-sans.otf') format('otf');
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'PermianSansTypeface', sans-serif;
     margin: 0;
     padding: 0;
 
@@ -324,11 +329,36 @@ form .actions-box .button {
     gap: 24px;
 }
 
-.about-us-page .block {
+.about-us-page .contacts {
+    display: flex;
+    gap: 24px;
+}
+
+.about-us-page .contacts .block {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    flex: 1 1 calc(50% - 12px);
+    max-width: calc(50% - 12px);
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 12px;
+}
+
+.about-us-page .contacts .block .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+}
+
+.about-us-page .contacts .block .content p {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 div.payment-methods {

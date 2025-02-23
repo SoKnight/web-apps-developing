@@ -21,7 +21,7 @@ public final class FragmentInjector {
     }
 
     public static void injectErrorFragment(Model model, ErrorModel errorModel) {
-        injectFragment(model, "error", "EasyHost - Ошибка");
+        injectFragment(model, "error", "ИКНТ - Ошибка");
         errorModel.injectInto(model);
     }
 
