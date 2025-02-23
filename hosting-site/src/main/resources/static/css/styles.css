@@ -355,8 +355,16 @@ div.payment-methods img {
     height: 24px;
 }
 
+input {
+    font-family: inherit;
+}
+
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+textarea {
+    font-family: inherit;
 }
 
 form {

@@ -55,7 +55,7 @@ public final class AdminProductsController {
                     model.addAttribute("product", product);
                     model.addAttribute("formTitle", "Редактирование услуги");
                     model.addAttribute("formButton", "Сохранить");
-                    injectAdminFragment(model, "crud/product", "EasyHost - Добавление услуги");
+                    injectAdminFragment(model, "crud/product", "EasyHost - Редактирование услуги");
                 },
                 () -> injectErrorFragment(model, ErrorModel.ERROR_PRODUCT_NOT_FOUND)
         );

@@ -20,9 +20,7 @@
                         показать
                         <span class="tooltip" th:text="${order.comment}"></span>
                     </span>
-                    <span th:if="${!order.hasComment()}">
-                        отсутствует
-                    </span>
+                    <span th:if="${!order.hasComment()}">отсутствует</span>
                 </p>
             </div>
             <div class="actions-box">
