@@ -52,6 +52,27 @@ button.dangerous:hover {
     background-color: #d8493e;
 }
 
+.button.floating,
+button.floating {
+    aspect-ratio: 1;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    opacity: 0.5;
+    max-width: 24px;
+    width: 24px;
+}
+
+.button.floating:hover,
+button.floating:hover {
+    opacity: 1;
+}
+
+.button.floating:active,
+button.floating:active {
+    opacity: 0.75;
+}
+
 .selectable {
     user-select: text;
     -webkit-user-select: text;
@@ -132,6 +153,7 @@ main {
 .page-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     max-width: 1200px;
     width: 100%;
 }
@@ -143,33 +165,24 @@ main {
     text-align: center;
 }
 
-.news-grid {
+.news-list {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
     gap: 24px;
 }
 
 .news-card {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 24px;
     overflow: hidden;
-    flex: 1 1 calc(33.333% - 16px);
-    max-width: calc(33.333% - 16px);
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 }
 
-.news-card .news-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 20px;
-}
-
-.image-container {
+.news-card .image-container {
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -177,88 +190,66 @@ main {
     border-bottom: rgba(0, 0, 0, 0.25) solid 1px;
 }
 
-.image-container img {
+.news-card .image-container img.cover {
     object-fit: cover;
     width: 100%;
-    height: 200px;
+    max-height: 30vh;
     display: block;
 }
 
 .news-date {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    display: inline-flex;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0.75);
+    font-size: 12px;
     color: white;
-    padding: 4px 8px;
+    padding: 2px 8px 2px 4px;
     border-radius: 50px;
 }
 
-.products-list {
+.news-date.floating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.news-card .news-content {
     display: flex;
     flex-direction: column;
+    align-items: start;
+    gap: 8px;
+    padding: 20px;
+}
+
+.news-card .news-content .title-box {
+    display: inline-flex;
     align-items: center;
-    gap: 18px;
+    gap: 12px;
 }
 
-.product-card {
-    display: flex;
-    flex-direction: row;
-    flex-grow: initial;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 24px;
-    overflow: hidden;
-    gap: 60px;
-    padding: 24px 36px;
-    width: 100%;
+.news-card .news-content .title-box span {
+    display: inline-flex;
+    align-items: center;
 }
 
-.product-card .title-box {
-    display: flex;
-    flex-direction: column;
-    min-width: fit-content;
+.news-card .news-content .actions-box {
+    display: inline-flex;
+    align-items: center;
     gap: 4px;
 }
 
-.product-card .title-box .title {
-    margin-bottom: 4px;
-}
-
-.product-card .main-content {
-    display: flex;
-    flex-direction: row;
+.news-card .news-content .actions-box a {
+    display: block;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 36px;
 }
 
-.product-card .main-content .item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.news-card .news-content h4,
+.news-card .news-content p {
+    text-align: start;
+    white-space: pre-line;
 }
 
-.product-card .price-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 15%;
-}
-
-.product-card .price-box h2 {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-}
-
-.product-card .price-box button {
-    width: 100%;
-}
-
-.products-grid,
-.orders-grid {
+.teachers-grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -266,8 +257,7 @@ main {
     gap: 24px;
 }
 
-.products-grid .product-card,
-.orders-grid .order-card {
+.teachers-grid .teacher-card {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -280,15 +270,32 @@ main {
     max-width: calc(33.333% - 16px);
 }
 
-.orders-grid .order-card .title-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+.teachers-grid .teacher-card .avatar {
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1;
+    height: 200px;
 }
 
-.products-grid .product-card .main-content,
-.orders-grid .order-card .main-content {
+.teachers-grid .teacher-card .avatar img {
+    box-sizing: border-box;
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    aspect-ratio: 1;
+    height: 200px;
+}
+
+.crud-panel .teachers-grid .teacher-card .avatar,
+.crud-panel .teachers-grid .teacher-card .avatar img {
+    height: 150px;
+}
+
+.teachers-grid .teacher-card .main-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -297,18 +304,7 @@ main {
     width: 100%;
 }
 
-.orders-grid .order-card .main-content .user-comment {
-    flex-grow: 1;
-    width: 100%;
-}
-
-.orders-grid .order-card .main-content textarea {
-    resize: vertical;
-    width: 100%;
-}
-
-.products-grid .product-card .actions-box,
-.orders-grid .order-card .actions-box,
+.teachers-grid .teacher-card .actions-box,
 form .actions-box {
     display: flex;
     align-items: center;
@@ -316,8 +312,7 @@ form .actions-box {
     width: 100%;
 }
 
-.products-grid .product-card .actions-box .button,
-.orders-grid .order-card .actions-box .button,
+.teachers-grid .teacher-card .actions-box .button,
 form .actions-box .button {
     width: 100%;
 }
@@ -326,11 +321,15 @@ form .actions-box .button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 850px;
+    width: 100%;
     gap: 24px;
 }
 
 .about-us-page .contacts {
     display: flex;
+    box-sizing: border-box;
+    width: 100%;
     gap: 24px;
 }
 
@@ -361,37 +360,30 @@ form .actions-box .button {
     gap: 8px;
 }
 
-div.payment-methods {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
-
-div.payment-methods img {
-    height: 24px;
+input {
+    font-family: inherit;
 }
 
 input[type=number] {
     -moz-appearance: textfield;
 }
 
+textarea {
+    font-family: inherit;
+    resize: vertical;
+    width: 100%;
+}
+
 form {
     display: flex;
     flex-direction: column;
-    flex-grow: initial;
     border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 24px;
     overflow: hidden;
     padding: 24px 36px;
     gap: 24px;
-}
-
-.product-order-page form {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 48px;
+    width: 100%;
+    max-width: 100%;
 }
 
 form input,
@@ -438,129 +430,6 @@ form .form-block {
     gap: 16px;
 }
 
-form .personal-info-block,
-form .side-block .presubmit-block {
-    height: 100%;
-    width: 100%;
-}
-
-form .side-block {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    gap: 16px;
-}
-
-form .side-block .presubmit-block textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-form .side-block .quantity-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    overflow: hidden;
-    padding: 24px 24px;
-    gap: 24px;
-}
-
-form .side-block .quantity-block .form-field {
-    width: fit-content;
-}
-
-form .side-block .quantity-block .form-field p {
-    align-content: center;
-    height: 32px;
-}
-
-form .side-block .quantity-block .quantity-counter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-form .side-block .quantity-block .quantity-counter input {
-    box-sizing: border-box;
-    padding: 0 8px;
-    overflow: hidden;
-    height: 32px;
-    text-align: center;
-}
-
-form .side-block .quantity-block .quantity-counter button {
-    border-radius: 12px;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    transition: color, opacity 0.25s ease;
-}
-
-form .side-block .quantity-block .quantity-counter button:hover {
-    color: black;
-}
-
-form .side-block .submit-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-form .side-block .submit-block .form-field label {
-    display: inline-flex;
-    cursor: pointer;
-    align-items: center;
-    width: fit-content;
-    gap: 8px;
-}
-
-form .side-block .submit-block .form-field input[type=checkbox] {
-    display: inline-block;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-}
-
-form .side-block .button {
-    width: 100%;
-}
-
-.product-order-complete-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding: 0 48px;
-}
-
-.product-order-complete-page .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.product-order-complete-page .header h1,
-.product-order-complete-page .header p {
-    text-align: center;
-}
-
-.product-order-complete-page .button {
-    text-align: center;
-    width: 300px;
-}
-
 .annotation {
     display: inline-flex;
     align-items: center;
@@ -578,44 +447,12 @@ form .side-block .button {
     color: rgb(255, 67, 55);
 }
 
-.tooltip-control {
-    display: inline-flex;
-    cursor: pointer;
-    text-decoration: underline;
-    position: relative;
-}
-
-.tooltip-control:hover {
-    text-decoration: none
-}
-
-.tooltip-control .tooltip {
-    visibility: hidden;
-    width: 250px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    background-color: #fff;
-    color: #000;
-    padding: 12px;
-    white-space: pre-line;
-
-    position: absolute;
-    z-index: 100;
-    left: 50%;
-    top: 100%;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    transform: translate(-50%, 6px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.tooltip-control:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-}
-
 .login-page {
     max-width: 450px;
+}
+
+.crud-panel {
+    width: 100%;
 }
 
 .crud-form {
@@ -641,10 +478,6 @@ form .side-block .button {
     flex-direction: column;
     align-items: end;
     gap: 16px;
-}
-
-.crud-panel .products-grid {
-    width: 100%;
 }
 
 footer {

@@ -7,11 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import static me.soknight.studying.institute.util.FragmentInjector.injectFragment;
 
 @Controller
 @AllArgsConstructor
 public final class PagesController {
+
+    public static final DateTimeFormatter ISO_DATE_RU = DateTimeFormatter.ISO_DATE.localizedBy(Locale.forLanguageTag("ru-RU"));
 
     private final NewsRepository newsRepository;
     private final TeacherRepository teacherRepository;
@@ -35,7 +40,7 @@ public final class PagesController {
     }
 
     @GetMapping("/teachers")
-    public String renderCatalogPage(Model model) {
+    public String renderTeachersPage(Model model) {
         model.addAttribute("teachers", teacherRepository.findAll(TeacherRepository.DEFAULT_SORT));
         injectFragment(model, "teachers", "ИКНТ - Преподаватели");
         return "page";

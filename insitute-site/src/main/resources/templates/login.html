@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >ИКНТ - Вход</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="brand">
+            <img class="logo" th:src="@{/icons/logo.svg}" alt="logo">
+            <h1>Институт компьютерных<br>наук и технологий</h1>
+        </div>
+    </header>
+    <main>
+        <div class="page-content login-page">
+            <form th:action="@{/login}" method="post">
+                <div class="form-block">
+                    <div class="form-field">
+                        <label for="username">Логин</label>
+                        <input type="text" id="username" name="username" placeholder="Введите логин" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+                    </div>
+                </div>
+
+                <div th:if="${param.error}" class="annotation error">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_17732_2652)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0001 19.1667C15.0628 19.1667 19.1667 15.0628 19.1667 10.0001C19.1667 4.93733 15.0628 0.833414 10.0001 0.833413C4.93733 0.833413 0.833415 4.93733 0.833415 10.0001C0.833414 15.0628 4.93733 19.1667 10.0001 19.1667ZM10.0001 6.33341C9.75697 6.33341 9.52381 6.42999 9.3519 6.6019C9.17999 6.77381 9.08342 7.00696 9.08342 7.25008L9.08341 10.0001C9.08341 10.2432 9.17999 10.4764 9.3519 10.6483C9.52381 10.8202 9.75697 10.9167 10.0001 10.9167C10.2432 10.9167 10.4764 10.8202 10.6483 10.6483C10.8202 10.4764 10.9167 10.2432 10.9167 10.0001L10.9167 7.25008C10.9167 7.00696 10.8202 6.77381 10.6483 6.6019C10.4764 6.42999 10.2432 6.33341 10.0001 6.33341ZM9.08341 12.7501C9.08341 12.507 9.17999 12.2738 9.3519 12.1019C9.52381 11.93 9.75697 11.8334 10.0001 11.8334C10.2432 11.8334 10.4764 11.93 10.6483 12.1019C10.8202 12.2738 10.9167 12.507 10.9167 12.7501C10.9167 12.9932 10.8202 13.2264 10.6483 13.3983C10.4764 13.5702 10.2432 13.6667 10.0001 13.6667C9.75697 13.6667 9.52381 13.5702 9.3519 13.3983C9.17999 13.2264 9.08341 12.9932 9.08341 12.7501Z" fill="#FF4337"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_17732_2652">
+                                <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    Неверные имя пользователя или пароль.
+                </div>
+
+                <input type="submit" class="button" value="Войти в аккаунт">
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Институт компьютерных наук и технологий</p>
+    </footer>
+</div>
+</body>
+</html>

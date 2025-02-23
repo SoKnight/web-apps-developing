@@ -1,0 +1,21 @@
+<div th:fragment="content" class="center-content news-list">
+    <div class="news-card" th:each="newsItem : ${news}">
+        <div th:if="${newsItem.hasCover()}" class="image-container">
+            <span class="news-date floating">
+                <img class="icon" th:src="@{/icons/clock.svg}">
+                <span th:text="${newsItem.getUserFriendlyDate()}"></span>
+            </span>
+            <img class="cover" th:src="${newsItem.coverUrl}">
+        </div>
+        <div class="news-content">
+            <div class="title-box">
+                <h4 th:text="${newsItem.title}"></h4>
+                <span class="news-date" th:if="${!newsItem.hasCover()}">
+                    <img class="icon" th:src="@{/icons/clock.svg}">
+                    <span th:text="${newsItem.getUserFriendlyDate()}"></span>
+                </span>
+            </div>
+            <p th:text="${newsItem.content}"></p>
+        </div>
+    </div>
+</div>

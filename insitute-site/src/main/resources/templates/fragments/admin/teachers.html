@@ -1,0 +1,24 @@
+<div th:fragment="content" class="crud-panel">
+    <a th:href="@{/admin/teachers/create}" class="button">Добавить преподавателя</a>
+
+    <div class="teachers-grid">
+        <div class="teacher-card" th:each="teacher : ${teachers}">
+            <div class="avatar">
+                <img th:if="${teacher.hasPhoto()}" th:src="${teacher.photoUrl}">
+            </div>
+            <h2 class="title" th:text="${teacher.getShortName()}"></h2>
+            <div class="main-content">
+                <p><b>Фамилия:</b> <span th:text="${teacher.lastName}?: 'Неизвестно'"></span></p>
+                <p><b>Имя:</b> <span th:text="${teacher.firstName}?: 'Неизвестно'"></span></p>
+                <p><b>Отчество:</b> <span th:text="${teacher.middleName}?: 'Неизвестно'"></span></p>
+                <p><b>Дата рождения:</b> <span th:text="${teacher.getUserFriendlyBirthDate()}?: 'Неизвестно'"></span></p>
+                <p><b>Возраст:</b> <span th:text="${teacher.hasBirthDate()} ? ${teacher.getUserFriendlyAge()} : 'Неизвестно'"></span></p>
+                <p><b>Кафедра:</b> <span th:text="${teacher.department}?: 'Неизвестно'"></span></p>
+            </div>
+            <div class="actions-box">
+                <a th:href="@{'/admin/teachers/' + ${teacher.id} + '/edit'}" class="button">Редактировать</a>
+                <a th:href="@{'/admin/teachers/' + ${teacher.id} + '/delete'}" onclick="return confirm('Вы действительно хотите удалить этого преподавателя?')" class="button dangerous">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>

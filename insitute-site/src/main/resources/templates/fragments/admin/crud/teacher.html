@@ -1,0 +1,42 @@
+<div th:fragment="content" class="crud-form">
+    <h1 th:text="${formTitle}"></h1>
+
+    <form action="" method="post">
+        <div class="form-block">
+            <div class="form-field">
+                <label for="last_name">Фамилия</label>
+                <input type="text" id="last_name" name="lastName" placeholder="Введите фамилию" th:value="${teacher.lastName}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="first_name">Имя</label>
+                <input type="text" id="first_name" name="firstName" placeholder="Введите имя" th:value="${teacher.firstName}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="middle_name">Отчество</label>
+                <input type="text" id="middle_name" name="middleName" placeholder="Введите отчество" th:value="${teacher.middleName}?: ''">
+            </div>
+
+            <div class="form-field">
+                <label for="birth_date">Дата рождения</label>
+                <input type="date" id="birth_date" name="birthDate" placeholder="Выберите дату рождения" th:value="${teacher.birthDate}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="department">Кафедра</label>
+                <input type="text" id="department" name="department" placeholder="Введите название кафедры" th:value="${teacher.department}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="photo_url">Ссылка на фотографию</label>
+                <input type="text" id="photo_url" name="photoUrl" placeholder="Укажите ссылку на фотографию" th:value="${teacher.photoUrl}?: ''">
+            </div>
+        </div>
+
+        <div class="actions-box">
+            <a class="button" th:href="@{/admin/teachers}">Отмена</a>
+            <input type="submit" class="button" th:value="${formButton}">
+        </div>
+    </form>
+</div>

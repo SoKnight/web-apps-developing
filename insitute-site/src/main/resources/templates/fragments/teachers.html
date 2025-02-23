@@ -1,0 +1,9 @@
+<div th:fragment="content" class="center-content teachers-grid">
+    <div class="teacher-card" th:each="teacher : ${teachers}">
+        <div class="avatar">
+            <img th:if="${teacher.hasPhoto()}" th:src="${teacher.photoUrl}">
+        </div>
+        <h2 class="title" th:text="${teacher.getShortName()}"></h2>
+        <p th:text="${teacher.department}"></p>
+    </div>
+</div>

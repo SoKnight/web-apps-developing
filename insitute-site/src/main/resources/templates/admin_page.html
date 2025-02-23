@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle ?: 'ИКНТ - Админ'}">ИКНТ - Админ</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="brand">
+            <img class="logo" th:src="@{/icons/logo.svg}" alt="logo">
+            <h1>Институт компьютерных<br>наук и технологий</h1>
+        </div>
+    </header>
+    <nav>
+        <a th:href="@{/admin/news}" th:classappend="${page == 'news'} ? 'active' : ''">Новости</a>
+        <a th:href="@{/admin/teachers}" th:classappend="${page == 'teachers'} ? 'active' : ''">Преподаватели</a>
+        <a th:href="@{/logout}" class="login-item">Выход</a>
+    </nav>
+    <main>
+        <div class="page-content">
+            <div th:replace="~{${content}}"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Институт компьютерных наук и технологий</p>
+    </footer>
+</div>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

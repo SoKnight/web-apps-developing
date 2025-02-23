@@ -1,0 +1,32 @@
+<div th:fragment="content" class="crud-form">
+    <h1 th:text="${formTitle}"></h1>
+
+    <form action="" method="post">
+        <div class="form-block">
+            <div class="form-field">
+                <label for="title">Заголовок</label>
+                <input type="text" id="title" name="title" placeholder="Введите заголовок новости" th:value="${newsItem.title}?: ''" required>
+            </div>
+
+            <div class="form-field">
+                <label for="content">Содержание</label>
+                <textarea id="content" name="content" placeholder="Введите содержание новости" th:text="${newsItem.content}?: ''" required></textarea>
+            </div>
+
+            <div class="form-field">
+                <label for="published_at">Дата публикации</label>
+                <input type="date" id="published_at" name="publishedAt" placeholder="Выберите дату публикации" th:value="${newsItem.publishedAt}?: ${todayDate}" required>
+            </div>
+
+            <div class="form-field">
+                <label for="cover_url">Ссылка на обложку</label>
+                <input type="text" id="cover_url" name="coverUrl" placeholder="Укажите ссылку на обложку" th:value="${newsItem.coverUrl}?: ''">
+            </div>
+        </div>
+
+        <div class="actions-box">
+            <a class="button" th:href="@{/admin/news}">Отмена</a>
+            <input type="submit" class="button" th:value="${formButton}">
+        </div>
+    </form>
+</div>
