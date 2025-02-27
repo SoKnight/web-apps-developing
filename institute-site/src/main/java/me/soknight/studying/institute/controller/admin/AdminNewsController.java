@@ -78,7 +78,7 @@ public final class AdminNewsController {
         return "redirect:/admin/news";
     }
 
-    @GetMapping("/admin/products/{newsItemId}/delete")
+    @GetMapping("/admin/news/{newsItemId}/delete")
     public String deleteNewsItem(@PathVariable long newsItemId) {
         newsRepository.deleteById(newsItemId);
         return "redirect:/admin/news";
